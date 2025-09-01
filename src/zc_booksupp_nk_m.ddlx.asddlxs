@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+annotate entity ZC_BOOKSUPP_NK_M with
+{
+  @UI.facet: [{
+      id: 'BookingSuppl',
+      purpose: #STANDARD,
+      position: 10 ,
+      label: 'BookingSuppl',
+      type: #IDENTIFICATION_REFERENCE
+  }
+  ]
+  @Search.defaultSearchElement: true
+  TravelId;
+  @Search.defaultSearchElement: true
+  BookingId;
+  @UI.lineItem: [{ position: 10, label: 'BSupp ID' } ]
+  //  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  BookingSupplementId;
+  //  @UI.lineItem: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20, label: 'Supp ID' }]
+  @UI.identification: [{ position: 20 }]
+  @Consumption.valueHelpDefinition: [{ entity: {
+    name: '/DMO/I_SUPPLEMENT',
+    element: 'SupplementID'
+  },
+  additionalBinding: [{ element: 'SupplementID' ,
+                            localElement: 'SupplementId'},
+                          { element: 'Price' ,
+                            localElement: 'Price'},
+                          { element: 'CurrencyCode' ,
+                            localElement: 'CurrencyCode'}
+                     ]
+
+
+   }]
+  SupplementId;
+  @UI.lineItem: [{ position: 0, label: 'Price' }]
+  //  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  Price;
+  @Consumption.valueHelpDefinition: [{ entity: {
+    name: 'I_Currency',
+    element: 'Currency'
+  } }]
+  @UI.hidden: true
+  CurrencyCode;
+  @UI.hidden: true
+  LastChangedAt;
+
+}

@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service definition - Travel for'
+define service ZSR_TRAVEL_NK_M {
+  expose ZC_TRAVEL_NK_M;
+  expose zc_booking_nk_m;
+  expose ZC_BOOKSUPP_NK_M;
+}
