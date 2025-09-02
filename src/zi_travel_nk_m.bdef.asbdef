@@ -1,6 +1,7 @@
 managed implementation in class zbp_travel_nk_m unique;
 strict ( 2 );
 
+
 define behavior for zi_travel_nk_m //alias <alias_name>
 implementation in class zbp_travel_nk_m unique
 persistent table ztravel_nk_m
@@ -25,8 +26,10 @@ early numbering
 
   determination calculateTotalPrice on modify { create; field BookingFee , CurrencyCode;}
 
+  side effects { field BookingFee affects field TotalPrice; }
+
   create ( authorization : global );
-  update;
+  update (features : global );
   delete;
   field ( readonly )  TravelId, CreatedBy,CreatedAt,LastChangedBy,LastChangedAt;
   field ( mandatory ) AgencyId,CustomerId,BeginDate,EndDate,BookingFee,TotalPrice,CurrencyCode,OverallStatus;
@@ -67,6 +70,7 @@ early numbering
   field ( mandatory : create, readonly : update ) BookingDate,CustomerId; //Mandatory when create and can be read only when update
 
   determination calculateTotalPrice on modify { create; field FlightPrice , CurrencyCode;}
+  side effects { field FlightPrice affects field _Travel.TotalPrice ; }
 
   association _Travel;
   association _Bookingsuppl { create ( features : instance ); } //Dynamic feature control when create Booking supplement Association (Need to implement code)
